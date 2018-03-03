@@ -67,7 +67,7 @@ if [ ! -f ${RASPBIAN_FILE} ]; then
     curl -L --url https://downloads.raspberrypi.org/raspbian_lite_latest --output ${RASPBIAN_FILE}
 fi
 
-RASPBIAN_FILE_SHA=`shasum ${RASPBIAN_FILE} | cut -d" " -f1`
+RASPBIAN_FILE_SHA=`shasum -a 256 ${RASPBIAN_FILE} | cut -d" " -f1`
 RASPBIAN_FILE_SHA_VALIDATION=`curl -s https://www.raspberrypi.org/downloads/raspbian/ 2>/dev/null | grep -o "<strong>${RASPBIAN_FILE_SHA}</strong>"`
 
 if [ -z ${RASPBIAN_FILE_SHA_VALIDATION} ]; then
